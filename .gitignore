@@ -1,2 +1,9 @@
+server/env
+
+*.env
+*.env.example
+*.env.local
+*.env.staging
 *.h5
 *.hdf5
+*.tflite
