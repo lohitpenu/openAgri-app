@@ -7,3 +7,5 @@ server/env
 *.h5
 *.hdf5
 *.tflite
+server/backend/backend/__pycache__/
+server/backend/server/__pycache__/

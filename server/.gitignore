@@ -1,3 +1,4 @@
 /env
-
+/agriapp
+/__pycache__
 .env

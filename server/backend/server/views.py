@@ -106,6 +106,8 @@ def AddSample(request):
             pictureleaf = Image.fromarray(rleaf)  
             picturetrap = Image.fromarray(rtrap)
             try :  
+                
+
                 image_path_leaf = f"./dataset/{qr}/leaf/"
                 os.makedirs(image_path_leaf,exist_ok=True)
                 # pictureleaf.resize(480,640)
@@ -120,6 +122,23 @@ def AddSample(request):
                 trappath = image_path_trap+f"/{qr}{current_datetime}.jpg"
                 print(trappath)
 
+                raw_image_path_leaf = f"./dataset/{qr}/raw/leaf/"
+                os.makedirs(raw_image_path_leaf,exist_ok=True)
+                # pictureleaf.resize(480,640)
+                leaf_filename = f"{qr}{current_datetime}.jpg"
+                leaf_path = os.path.join(raw_image_path_leaf, leaf_filename)
+                with open(leaf_path, 'wb') as f:
+                    for chunk in leaf.chunks():
+                        f.write(chunk)
+
+                raw_image_path_trap = f"./dataset/{qr}/raw/trap/"
+                os.makedirs(raw_image_path_trap, exist_ok=True)
+                trap_filename = f"{qr}{current_datetime}.jpg"
+                trap_path = os.path.join(raw_image_path_trap, trap_filename)
+                with open(trap_path, 'wb') as f:
+                    for chunk in trap.chunks():
+                        f.write(chunk)
+
                 print(data.get("user"))
 
                 dataToSave = DataSet(
@@ -128,6 +147,8 @@ def AddSample(request):
                     pest_detected = str(pest_detected),
                     leaf = str(leafpath),
                     trap = str(trappath),
+                    raw_leaf = str(leaf_path),
+                    raw_trap = str(trap_path),
                     useremail = str(data.get("user")),
                     latitude = float(data.get("latitude")),
                     longitude = float(data.get("longitude"))
@@ -136,7 +157,7 @@ def AddSample(request):
                 print("Extracted")
 
             except:
-                print("Some error happened ❗❗❗❗")
+                print("Error")
                 return JsonResponse({"success":0})
             # trap_name = default_storage.save(trap.name,trap)
             # trap_url = default_storage.path("pestserver/dataset/"+str(qr)+"/"+trap_name)

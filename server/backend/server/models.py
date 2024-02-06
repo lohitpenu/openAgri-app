@@ -24,6 +24,8 @@ class DataSet(models.Model):
     qr = models.CharField(max_length=200,default="None")
     leaf = models.CharField(max_length=200,default="None")
     trap = models.CharField(max_length=200,default="None")
+    raw_leaf = models.CharField(max_length=200,default="None")
+    raw_trap = models.CharField(max_length=200,default="None")
     pest_detected = models.CharField(max_length=200,default="None")
     useremail = models.CharField(max_length=200,default="None")
     longitude = models.FloatField(default=0.0)
