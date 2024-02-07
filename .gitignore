@@ -1,5 +1,7 @@
 server/env
 
+*.sqlite3
+*.pyc
 *.env
 *.env.example
 *.env.local
